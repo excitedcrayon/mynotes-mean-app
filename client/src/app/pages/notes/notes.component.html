@@ -1,0 +1,52 @@
+<header>
+    <span routerLink="/">myNotes</span>
+    <button (click)="deleteAllNotes()">Delete All Notes</button>
+</header>
+<div class="notes-app">
+    <div class="notes-list">
+        <div class="note-add">
+            <a routerLink="/">Add New Note</a>
+        </div>
+        <div class="notes-wrapper">
+            <div class="note" *ngFor="let note of notes">
+                <a [routerLink]="['/notes', note._id]" aria-label="Click this link to read the note note.title" title="{note.title}">{{ note.title }}</a>
+            </div>
+        </div>
+    </div>
+    <div class="current-notes">
+        <ng-container *ngIf="singleNote">
+            <div class="current-note-update-delete">
+                <button title="Button update the current note" aria-label="Button update the current note" class="update" (click)="updateSingleNote(singleNote._id, noteTitle.value, noteText.value)">Update</button>
+                <button title="Button delete the current note" aria-label="Button delete the current note" class="delete" (click)="deleteSingleNote(singleNote._id)">Delete</button>
+            </div>
+            <div class="current-note">
+                <div class="current-note-title">
+                    <input type="text" #notetitle value="{{ singleNote.title }}" #noteTitle>
+                </div>
+                <div class="current-note-date">
+                    <small>Last modified: {{ formattedDate }}</small>
+                </div>
+                <div class="current-note-text">
+                    <textarea name="" id="" cols="30" rows="10" #noteText>{{ singleNote.text }}</textarea>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!singleNote">
+            <form [formGroup]="notesForm">
+                <div class="form-row">
+                    <label>Title</label>
+                    <input type="text" formControlName="title">
+                    <span class="form-error" *ngIf="title && title.invalid && title.touched">Please enter at least 1 character for your title</span>
+                </div>
+                <div class="form-row">
+                  <label>Text</label>
+                  <textarea cols="30" rows="10" formControlName="text"></textarea>
+                  <span class="form-error" *ngIf="text && text.invalid && text.touched">Please enter at least 1 character for your text</span>
+              </div>
+              <div class="form-row-button">
+                <button [disabled]="notesForm.invalid" type="submit" aria-label="Button creates a new note when clicked" (click)="createNewNote()">Create Note</button>
+              </div>
+            </form>
+        </ng-container>
+    </div>
+</div>

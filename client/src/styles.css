@@ -1,0 +1,234 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;500;600;700&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+:root{
+    --color-jetblack: rgb(52, 52, 52);
+    --color-charcoal: rgb(54, 69, 79);
+    --color-black: rgb(0,0,0);
+    --color-grey: rgb(238,238,238);
+    --color-white: rgb(255,255,255);
+    --color-blue: rgb(0, 140, 186);
+    --color-green: rgb(76, 175, 80);
+    --color-red: rgb(255,0,0);
+
+    --transition-fast: 0.2s;
+    --transition-medium: 0.5s;
+    --transition-slow: 1s;
+}
+html,
+body{
+    width: 100vw;
+    height: 100vh;
+    line-height: 1.5;
+    overscroll-behavior: none;
+}
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+audio,
+span,
+a,
+blockquote,
+small,
+button,
+strong{
+    display: inline-block;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+header{
+    background: linear-gradient(45deg, var(--color-charcoal), var(--color-black));
+    padding: 0.45rem 2rem;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: space-between;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+@media (min-width: 768px){
+    header{
+        -ms-flex-direction: unset;
+        flex-direction: unset;
+    }
+}
+header span{
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    color: var(--color-grey);
+    font-weight: 800;
+    font-size: 2rem;
+    opacity: 0.35;
+    padding: 0 0.55rem;
+    transition: var(--transition-fast) ease;
+}
+header span:hover{
+    opacity: 0.7;
+}
+.notes-app {
+    display: -ms-flex;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.notes-list,
+.current-notes{
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.notes-list{
+    background: var(--color-jetblack);
+}
+.current-notes{
+    padding: 2rem;
+    background: var(--color-grey);
+    box-shadow: 0 0 30px var(--color-black);
+}
+
+@media (min-width: 1024px){
+    .notes-list{ max-width: 20%; }
+    .current-notes{ max-width: 80%; }
+    .notes-list,
+    .current-notes{ height: 100vh; }
+}
+.note:hover{
+    background: rgba(238,238,238,0.1);
+}
+.note a,
+.note-add a {
+    margin: 0.25rem;
+    padding: 0.5rem 2rem;
+    width: 100%;
+    max-width: 97%;
+    color: var(--color-grey);
+    opacity: 0.3;
+    text-indent: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    transition: var(--transition-medium) ease-in-out;
+}
+.note a:hover{
+    opacity: 5;
+    text-indent: 0.45rem;
+}
+.note-add a:before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    border: 1px solid var(--color-grey);
+    border-radius: 50%;
+    background: url('../assets/add.svg') no-repeat center;
+    background-size: contain !important;
+    background-color: var(--color-white);
+}
+.current-note-title input[type="text"] {
+    outline: none;
+    border: 0;
+    background: transparent;
+    font-size: 4rem;
+    display: inline-block;
+    width: 100%;
+    opacity: 0.8;
+    border-bottom: 1px solid transparent;
+}
+.current-note-title input[type="text"]:focus{
+    border-bottom: 1px solid rgba(52,52,52, 0.1);
+}
+.current-note-text textarea {
+    background: transparent;
+    outline: none;
+    border: 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    resize: none;
+    width: 100%;
+    height: max-content;
+    min-height: 600px;
+    padding: 0.35rem;
+    border-radius: 0.35rem;
+}
+.current-note-text textarea:focus{
+    background: var(--color-white);
+}
+.form-row{
+    display: -ms-flex;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.form-row label{
+    margin: 0.85rem 0;
+}
+.form-row input[type="text"],
+.form-row textarea{
+    outline: none;
+    border: 1px solid var(--color-grey);
+    padding: 0.45rem;
+    font-size: 1rem;
+}
+.form-row input[type="text"]:focus,
+.form-row textarea:focus{
+    border: 1px solid var(--color-charcoal);
+}
+.form-row textarea{
+    resize: none;
+}
+button{
+    cursor: pointer;
+    padding: 15px 25px;
+    margin: 0.85rem 0;
+    outline: none;
+    border: 0;
+    color: var(--color-white);
+    background: var(--color-blue);
+    text-transform: uppercase;
+    font-size: 13px;
+    transition: var(--transition-fast) linear;
+}
+button:hover{
+    background: var(--color-jetblack) !important;
+}
+button:disabled{
+    cursor: not-allowed;
+    color: var(--color-jetblack);
+    background: transparent;
+    border: 1px solid var(--color-black);
+}
+.form-error{
+    font-size: 12px;
+    color: var(--color-red);
+}
+.current-note-update-delete button {
+    margin-right: 2.5rem;
+}
+.current-note-update-delete button.update{
+    background: var(--color-green);
+}
+.current-note-update-delete button.delete{
+    background: var(--color-red);
+}
